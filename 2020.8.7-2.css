@@ -1,0 +1,32 @@
+body,h2,p{
+    margin: 0;
+    padding: 0;
+}
+#title{
+    width: 100%;
+    text-align: left;
+    color: white;
+    background: #5E5D5D;
+    padding: 20px;
+}
+#content div{
+    border-bottom: 2px solid #dddddd;
+    display: block;
+    height: 120px;
+}
+#content h2{
+    padding: 47px 20px;
+    text-align: center;
+    background: #9d9c9c;
+    float: left;
+    font-size:20px;
+
+}
+#content p{
+    padding-left: 156px;
+    padding-top: 20px;
+}
+.pn{
+    word-wrap: break-word;
+    word-break: normal;
+}
