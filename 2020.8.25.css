@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.logo{
+    background: #5E5D5D;
+}
+.logox,.block,.aim,.mc{
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+}
+.text,.to{
+    display: inline-block;
+    color: #ffffff;
+}
+.text{
+    font-size: 1.5em;
+    margin: 0.2em 0;
+}
+.to{
+    position: absolute;
+    right: 0;
+}
+.to a{
+    color: #ffffff;
+}
+.banner{
+    height: 12em;
+    background: #6bd31b;
+    position: relative;
+}
+
+.add{
+    position: absolute;
+    right: 0;
+    top:8em;
+
+
+}
+.add div{
+    display: inline-block;
+    border: 1px ridge #5E5D5D;
+    margin-left:5px;
+    text-align: center;
+    width: 28px;
+    vertical-align: bottom;
+}
+.add .num{
+    height: 35px;
+    line-height:35px ;
+    background: #ffffff;
+    opacity: 0.5;
+}
+.add .now{
+    height: 45px;
+    background: #ffffff;
+    opacity: 0.7;
+    line-height: 45px;
+}
+.main{
+    height: 960px;
+    }
+.main{
+    height: 960px;
+
+}
+.mtop{
+    height: 4em;
+    border-bottom: 1px solid #ccc;
+}
+.aim{
+    height: 100%;
+}
+.aim div{
+    display: inline-block;
+    position: relative;
+    top:27px;
+    height: 36px;
+    width: 80px;
+    border: 1px solid #ccc ;
+    border-bottom: 0;
+    border-radius:1em 1em 0 0;
+    line-height: 36px;
+    text-align: center;
+    margin:0 -0.12em;
+    background: #ffffff;
+    }
+.aim .num{
+    background: #eeeeee;
+}
+.aim .now{
+    height: 37px;
+}
+.mc{
+    display: flex;
+    flex-wrap: wrap;
+}
+.mc div{
+    margin: 5px;
+    border: 2px solid #ccc;
+    flex: 1 1 200px;
+    height: 270px;
+    line-height: 270px;
+    text-align: center;
+    font-size: 30px;
+}
+.mc .one{
+    flex: 1 0 340px;
+}
+.mc .two{
+    flex: 1 1 200px;
+}
+.mc .three{
+    flex: 1 0 340px;
+}
+footer{
+    width: 100%;
+    height: 100px;
+    background: #5E5D5D;
+    color: #fff;
+    text-align: center;
+}
+footer p{
+    padding: 10px;
+}
