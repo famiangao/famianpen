@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p >Hello!<span id="time"></span></p>
+<script>
+    let word=document.getElementById("time");
+    let time=new Date();
+    let hourse=time.getHours();
+    if(hourse>0&&hourse<=5){
+        word.innerHTML="凌晨好"
+    }else if(hourse>5&&hourse<=8){
+        word.innerHTML="早上好"
+    }else if(hourse>8&&hourse<=12){
+        word.innerHTML="下午好";
+    }else{
+        word.innerHTML="晚上好";
+    }
+
+</script>
+</body>
+</html>
