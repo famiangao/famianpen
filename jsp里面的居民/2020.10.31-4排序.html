@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>haha,please look at console,there is nothing:)</p>
+<script>
+    var arrNum = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+    console.log(arrNum.sort(compareNumSort));
+    console.log(arrNum.sort(compareNumReverse))
+    var arrWord = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+    console.log(arrWord.sort());
+    console.log(arrWord.reverse());
+    var arrArray = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+    console.log(arrArray.sort(compareArraySort));
+    console.log(arrArray.sort(compareArrayReverse));
+    var arrObject = [
+        {
+            id: 1,
+            name: 'candy',
+            value: 40
+        }, {
+            id: 2,
+            name: 'Simon',
+            value: 50
+        }, {
+            id: 3,
+            name: 'Tony',
+            value: 45
+        }, {
+            id: 4,
+            name: 'Annie',
+            value: 60
+        }
+    ];
+    console.log(arrObject.sort(compareObjectSort));
+    console.log(arrObject.sort(compareObiectReverse));
+    function compareNumSort(a,b) {
+        return a-b;
+    }
+    function compareNumReverse(a,b) {
+        return b-a;
+    }
+    function compareArraySort(a,b) {
+        return a[1]-b[1];
+    }
+    function compareArrayReverse(a,b) {
+        return b[1]-a[1];
+    }
+    function compareObjectSort(a,b) {
+        return a.value-b.value;
+    }
+    function compareObiectReverse(a,b) {
+        return b.value-a.value;
+    }
+</script>
+</body>
+</html>

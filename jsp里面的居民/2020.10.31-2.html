@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="queue-input" type="text">
+<p id="queue-cont">队列内容：<span id="queue-show"></span></p>
+<button id="in-btn">入队</button>
+<button id="out-btn">出队</button>
+<button id="font-btn">打印队头元素内容</button>
+<button id="empty-btn">判断队列是否为空</button>
+<p id="need-show"></p>
+<script>
+
+    let queue = Array();
+    let inBut=document.querySelector("#in-btn");
+    let outBut=document.querySelector("#out-btn");
+    let fontBut=document.querySelector("#font-btn");
+    let emptyBut=document.querySelector("#empty-btn");
+    let num=document.querySelector("#queue-input");
+    let queueShow=document.querySelector("#queue-show");
+    let needShow=document.querySelector("#need-show")
+    inBut.addEventListener("click",inB);
+    outBut.addEventListener("click",outB);
+    fontBut.addEventListener("click",fontB);
+    emptyBut.addEventListener("click",emptyB);
+    function inB() {
+        queue.unshift(num.value);
+        let queueSentence=queue.join("<-");
+        queueShow.textContent=queueSentence;
+    }
+    function outB() {
+        queue.pop();
+        let queueSentence=queue.join("<-");
+        queueShow.textContent=queueSentence;
+    }
+    function fontB() {
+        if(queue.length===0){
+            needShow.textContent="队为空";
+        }else{
+            needShow.textContent="队头元素是:"+queue[queue.length-1];
+        }
+
+    }
+    function emptyB() {
+        if(queue.length===0){
+            needShow.textContent="队为空";
+        }else{
+            needShow.textContent="队头不为空";
+        }
+    }
+
+</script>
+
+</body>
+</html>
