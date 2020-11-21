@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<select id="year-select">
+</select>
+
+<select id="month-select">
+</select>
+
+<select id="day-select">
+</select>
+
+<select id="hour-select">
+</select>
+
+<select id="minite-select">
+</select>
+
+<select id="second-select">
+</select>
+
+<p id="result-wrapper">现在距离<span id="year-show"></span> 年<span id="mounth-show"></span>月<span id="day-show"></span>日星期<span id="week-show"></span> <span id="hour-show"></span>:<span id="minite-show"></span>:<span id="second-show"></span> <span id="ago">已经过去</span> <span id="have-day">X</span>  天 <span id="have-hour">X</span> 小时 <span id="have-minite" >X</span> 分 <span id="have-second">X</span>  秒</p>
+<script>
+    let year=document.querySelector("#year-select");
+    let mounth=document.querySelector("#month-select");
+    let day=document.querySelector("#day-select");
+    let hour=document.querySelector("#hour-select");
+    let minite=document.querySelector("#minite-select");
+    let second=document.querySelector("#second-select");
+    neatYear();
+    neatMounth();
+    neatHour();
+    neatMinite();
+    neatSecond();
+    year.onchange=function(){
+        document.querySelector("#year-show").textContent=year.selectedIndex+2000;
+    }
+    mounth.onchange=function (event) {
+        document.querySelector("#mounth-show").textContent=mounth.selectedIndex+1;
+        day.textContent="";
+        let moun=[31,28,31,30,31,30,31,31,30,31,30,31];
+        let indexy=year.options[year.selectedIndex].value;
+        if((indexy%4===0&&indexy%100!==0)||indexy%400===0)moun[1]=29;
+        let indexm=mounth.options[mounth.selectedIndex].value-1;
+        for(let i=1;i<=moun[indexm];i++){
+            let option=document.createElement("option");
+            option.value=i;
+            option.textContent=i;
+            day.appendChild(option);
+        }
+    }
+    day.onchange=function(){
+        document.querySelector("#day-show").textContent=day.selectedIndex+1;
+        let tempday=year.selectedIndex+2000+"/"+(mounth.selectedIndex+1)+"/"+(day.selectedIndex+1);
+        let needday=new Date(tempday).getDay();
+        let weekday=["日","一","二","三","四","五","六"]
+        document.querySelector("#week-show").textContent=weekday[needday];
+    }
+    hour.onchange=function(){
+        let need=hour.selectedIndex;
+        need=neatZero(need);
+        document.querySelector("#hour-show").textContent=need;
+    }
+    minite.onchange=function(){
+        let need=minite.selectedIndex;
+        need=neatZero(need);
+        document.querySelector("#minite-show").textContent=need;
+    }
+    second.onchange=function(){
+        let need=second.selectedIndex;
+        need=neatZero(need);
+        document.querySelector("#second-show").textContent=need;
+    }
+    timeChange();
+    function timeChange() {
+        let tempday=year.selectedIndex+2000+"/"+(mounth.selectedIndex+1)+"/"+(day.selectedIndex+1)+" "+hour.selectedIndex+":"+minite.selectedIndex+":"+second.selectedIndex;
+        let haveDay=document.querySelector("#have-day");
+        let haveHour=document.querySelector("#have-hour");
+        let haveMinite=document.querySelector("#have-minite");
+        let haveSecond=document.querySelector("#have-second");
+        let ago=document.querySelector("#ago");
+        let needday=new Date(tempday);
+        let now=new Date();
+        if(now.getTime()>needday.getTime()){
+            ago.textContent="已经过去";
+            let totaltime=now.getTime()-needday.getTime();//相差多少毫秒
+            let haveDayX=Math.floor(totaltime/(1000*3600*24));
+            totaltime-=haveDayX*1000*3600*24;
+            let haveHourX=Math.floor(totaltime/(1000*3600));
+            totaltime-=haveHourX*1000*3600;
+            let havaMiniteX=Math.floor(totaltime/(1000*60));
+            totaltime-=havaMiniteX*1000*60;
+            let haveSecondX=Math.floor(totaltime/1000);
+            haveDay.textContent=haveDayX;
+            haveHour.textContent=haveHourX;
+            haveMinite.textContent=havaMiniteX;
+            haveSecond.textContent=haveSecondX;
+        }else {
+            let totaltime=needday.getTime()-now.getTime();//相差多少毫秒
+            ago.textContent="还有";
+            let haveDayX=Math.floor(totaltime/(1000*3600*24));
+            totaltime-=haveDayX*1000*3600*24;
+            let haveHourX=Math.floor(totaltime/(1000*3600));
+            totaltime-=haveHourX*1000*3600;
+            let havaMiniteX=Math.floor(totaltime/(1000*60));
+            totaltime-=havaMiniteX*1000*60;
+            let haveSecondX=Math.floor(totaltime/1000);
+            haveDay.textContent=haveDayX;
+            haveHour.textContent=haveHourX;
+            haveMinite.textContent=havaMiniteX;
+            haveSecond.textContent=haveSecondX;
+        }
+        setTimeout('timeChange()',500);
+    }
+    function neatZero(numStr) {
+        if(numStr<10){
+            numStr='0'+numStr;
+        }
+        return numStr;
+    }
+    function neatYear() {
+        for(let i=2000;i<2033;i++){
+            let option=document.createElement("option");
+            option.value=i;
+            option.textContent=i;
+            year.appendChild(option);
+        }
+    }
+    function neatMounth() {
+        for(let i=1;i<13;i++){
+            let option=document.createElement("option");
+            option.value=i;
+            option.textContent=i;
+            mounth.appendChild(option);
+        }
+    }
+    function neatHour() {
+        for(let i=0;i<24;i++){
+            let option=document.createElement("option");
+            i=neatZero(i);
+            option.value=i;
+            option.textContent=i;
+            hour.appendChild(option);
+        }
+    }
+    function neatMinite() {
+        for(let i=0;i<60;i++){
+            let option=document.createElement("option");
+            i=neatZero(i);
+            option.value=i;
+            option.textContent=i;
+            minite.appendChild(option);
+        }
+    }
+    function neatSecond() {
+        for(let i=0;i<60;i++){
+            let option=document.createElement("option");
+            i=neatZero(i);
+            option.value=i;
+            option.textContent=i;
+            second.appendChild(option);
+        }
+    }
+</script>
+</body>
+
+</html>

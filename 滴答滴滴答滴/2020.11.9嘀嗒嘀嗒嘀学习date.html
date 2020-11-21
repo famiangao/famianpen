@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="f1"></p>
+<p id="s2"></p>
+<script>
+
+
+    let p=document.createElement("p");
+    document.querySelector("body").appendChild(p);
+
+    setInterval(out,500);
+    function out() {
+        let now=new Date();
+        let year=now.getFullYear();
+        let mounth=neat(now.getMonth());
+        let day=neat(now.getDate());
+        let week=now.getDay();
+        let houres=neat(now.getHours());
+        let minute=neat(now.getMinutes());
+        let second=neat(now.getSeconds());
+        week=weekOn(week);
+        noon=houres>12?"PM":'AM'
+        document.querySelector("#f1").textContent=year+"-"+mounth+"-"+day+"-"+week+houres+":"+minute+":"+second+noon;
+        document.querySelector("#s2").textContent=year+"年"+mounth+"月"+day+"日"+week+houres+":"+minute+":"+second;
+    }
+    function weekOn(week) {
+        let day= ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];
+        return day[week];
+    }
+    function neat(num) {
+        if(num<10){
+            num='0'+num;
+        }
+        return num;
+    }
+</script>
+</body>
+</html>
