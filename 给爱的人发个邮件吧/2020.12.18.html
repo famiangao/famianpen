@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+       div,ul{
+           margin: 0;
+           padding: 0;
+           border: 0;
+        }
+        ul{
+            list-style-type: none;
+            width: 200px;
+        }
+        li:hover{
+            background: #c7ffa2;
+        }
+        .choose{
+            background: #fbffb2;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <input id="email-input" type="text" autofocus="autofocus">
+    <ul id="email-sug-wrapper" class="email-sug"></ul>
+</div>
+</body>
+<script>
+    let postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    let email=document.querySelector("#email-input");
+    let showEmail=document.querySelector("#email-sug-wrapper");
+    email.addEventListener("keypress",keypressF);
+    email.addEventListener("input",inputF);
+    showEmail.addEventListener("click",clickF);
+    email.addEventListener("keydown",keydown);
+    function clickF(e){
+        e=e.target;
+        let word=changeType(e.innerHTML);
+        email.value=word;
+        Nhideul();
+    }
+    function keydown(e){
+        let xxx=e.key;
+        let allLi=document.querySelectorAll("li");
+        if(xxx==="ArrowUp"){
+            let at=findchoose();
+            allLi[at].className="";
+            if(at===0){
+                allLi[allLi.length-1].className="choose";
+            }else if (at===-1){
+                allLi[0].className="choose";
+            } else{
+                allLi[at-1].className="choose";
+            }
+        }
+        else if(xxx==="Enter"){
+            let at=findchoose();
+            email.value=allLi[at].textContent;
+            Nhideul();
+
+        }
+        else if(xxx==="ArrowDown"){
+            let at=findchoose();
+            allLi[at].className="";
+            if(at===allLi.length-1){
+                allLi[0].className="choose";
+            }else if (at===-1){
+                allLi[0].className="choose";
+            } else{
+                allLi[at+1].className="choose";
+            }
+        }
+    }
+    let ready=true;
+    function keypressF(e) {
+        let xxx=e.code;
+        if(xxx==="Space"){
+            ready=false;
+        }
+        else {
+            ready=true;
+        }
+
+    }
+    function findchoose() {
+        let allLi=document.querySelectorAll("li");
+        let len=allLi.length;
+        let at=-1;
+        for(let i=0;i<len;i++){
+            if(allLi[i].className==="choose"){
+                at=i;
+                break;
+            }
+        }
+        return at;
+
+    }
+    function inputF() {
+        if(ready){
+            putul();
+            hideul();
+            console.log("hhh");
+        }
+
+    }
+    function getinput(e) {
+        let content=email.value;
+        content=content.trim();
+        return content;
+    }
+    function getul() {
+        let content=getinput();
+        let tail;
+        let true_content=content;
+        let num=content.indexOf('@');
+        let len=postfixList.length;
+        let len2=len;
+        let litotal=document.createElement("div");
+        let showtotal=true;
+        if(num!=-1){
+            content=content.substring(0,num);
+            tail=true_content.substring(num+1);
+            while (len2--){
+                let tail_size=tail.length;
+                let email_head=postfixList[postfixList.length-len2-1].substring(0,tail_size);
+                if(tail==email_head){
+                    showtotal=false;
+                    let li=document.createElement("li");
+                    let tcontent=content+"@"+postfixList[postfixList.length-len2-1];
+                    li.appendChild(document.createTextNode(tcontent));
+                    litotal.appendChild(li);
+                }
+            }
+        }
+        if(showtotal){
+            while (len--){
+                let li=document.createElement("li");
+                let tcontent=content+"@"+postfixList[postfixList.length-len-1];
+                li.appendChild(document.createTextNode(tcontent));
+                litotal.appendChild(li);
+            }
+        }
+        litotal.firstChild.className="choose";
+        return litotal;
+
+    }
+    function putul() {
+        let li=getul();
+        showEmail.textContent="";
+        showEmail.appendChild(li);
+
+
+    }
+    function hideul() {
+        if(email.value==""){
+            Nhideul();
+        }else{
+            Rhideul();
+        }
+    }
+    function Rhideul() {
+        showEmail.display="block";
+
+    }
+    function Nhideul() {
+        showEmail.display="none";
+        location.reload();
+    }
+    function changeType(word) {
+        let div=document.createElement("div");
+        div.innerHTML=word;
+        let understandWord=div.innerText;
+        return understandWord;
+    }
+</script>
+</html>
