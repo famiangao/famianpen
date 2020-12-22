@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #show_table{
+            display: none;
+            margin: auto;
+            padding: 10px;
+        }
+        div{
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
+        table{
+            width: 100%;
+        }
+        tr{
+            width:100%;
+        }
+        td,th{
+            white-space: nowrap;
+        }
+        #chooseRegion{
+            float: left;
+
+        }
+        #chooseProduct{
+            overflow: auto;
+            padding-left:50px ;
+        }
+        input{
+            float: left;
+            margin: 10px;
+        }
+        p{
+            overflow: auto;
+            margin: 0px;
+            line-height: 35px;
+        }
+    </style>
+    <script src="table.js"></script>
+    <script src="checkbox.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+<div id="chooseRegion">
+    <input type="checkbox" name=region value="华东"> <p>华东</p>
+    <input type="checkbox" name=region value="华南"> <p>华南</p>
+    <input type="checkbox" name=region value="华北"> <p>华北</p>
+    <input type="checkbox" name=region value="all"><p>全选</p>
+</div>
+<div id="chooseProduct">
+    <input type="checkbox" name=product value="手机"><p>手机</p>
+    <input type="checkbox" name=product value="智能音箱"> <p>智能音箱</p>
+    <input type="checkbox" name=product value="笔记本"> <p>笔记本</p>
+    <input type="checkbox" name=product value="all"><p>全选</p>
+</div>
+<table id="show_table" border="1" cellspacing="0">
+</table>
+</body>
+</html>

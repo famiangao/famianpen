@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #show_table{
+            display: none;
+            margin: auto;
+            padding: 10px;
+        }
+        div{
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
+        table{
+            width: 100%;
+        }
+        tr{
+            width:100%;
+        }
+        td,th{
+            white-space: nowrap;
+        }
+        #chooseRegion{
+            float: left;
+
+        }
+        #chooseProduct{
+            overflow: auto;
+            padding-left:50px ;
+        }
+        input{
+            float: left;
+            margin: 10px;
+        }
+        p{
+            overflow: auto;
+            margin: 0px;
+            line-height: 35px;
+        }
+    </style>
+</head>
+<body>
+<div id="chooseRegion">
+   <input type="checkbox" name=“region” value="华东"> <p>华东</p>
+   <input type="checkbox" name=“region” value="华南"> <p>华南</p>
+   <input type="checkbox" name=“region” value="华北"> <p>华北</p>
+   <input type="checkbox" name=“region” value="all"><p>全选</p>
+</div>
+<div id="chooseProduct">
+    <input type="checkbox" name="product" value="手机"><p>手机</p>
+    <input type="checkbox" name="product" value="智能音箱"> <p>智能音箱</p>
+    <input type="checkbox" name="product" value="笔记本"> <p>笔记本</p>
+    <input type="checkbox" name="product" value="all"><p>全选</p>
+</div>
+<table id="show_table" border="1" cellspacing="0">
+</table>
+</body>
+<script>
+    let sourceData = [{
+        product: "手机",
+        region: "华东",
+        sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+    }, {
+        product: "手机",
+        region: "华北",
+        sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+    }, {
+        product: "手机",
+        region: "华南",
+        sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+    }, {
+        product: "笔记本",
+        region: "华东",
+        sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+    }, {
+        product: "笔记本",
+        region: "华北",
+        sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+    }, {
+        product: "笔记本",
+        region: "华南",
+        sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+    }, {
+        product: "智能音箱",
+        region: "华东",
+        sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+    }, {
+        product: "智能音箱",
+        region: "华北",
+        sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+    }, {
+        product: "智能音箱",
+        region: "华南",
+        sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+    }]
+    let chooseRegion=document.querySelector("#chooseRegion");
+    let chooseProduct=document.querySelector("#chooseProduct");
+    chooseProduct.addEventListener("change",prepare);
+    chooseRegion.addEventListener("change",prepare);
+    let showTable=document.querySelector("#show_table");
+    function prepare() {
+        console.log("hhh");
+        showTable.textContent="";
+        putTable();
+
+    }
+    function tableProduct() {
+        let productName=["手机","笔记本","智能音箱"];
+        let total=findCheck(chooseProduct);
+
+        return total;
+    }
+    function tableRegion() {
+        //获取select的输入，显示表头和表格
+        let sites=["华东","华南","华北"];
+        let num=chooseRegion.selectedIndex;
+
+        return sites[num];
+    }
+    function findCheck(e) {
+        let child=e.childNodes;
+        let total=Array();
+        let arriveTtoal=0;
+        for(let i=0;i<child.length;i++){
+            if(child[i].type=="checkbox"){
+                if(child[i].checked){
+                    if(child[i].value!="all"){
+                        total[arriveTtoal++]=child[i].value;
+                    }else {
+                        if(arriveTtoal!=3){
+                            for(let i=0;i<child.length;i++) {
+                                if (child[i].type == "checkbox") {
+                                    child[i].checked=true;
+                                    total[arriveTtoal++]=child[i].value;
+                                }
+                            }
+                            break;
+                        }
+
+                    }
+                }
+            }
+        }
+        if (total.length==3){
+            for(let i=0;i<child.length;i++) {
+                if (child[i].type == "checkbox") {
+                    if(child[i].value=="all")child[i].checked=true;
+                }
+            }
+        }
+        return total;
+
+
+    }
+    function putTable() {
+        let region=tableRegion();
+        let product=tableProduct();
+        let div=document.createElement("div");
+
+        //渲染表头
+        let tr2=document.createElement("tr");
+        let th=document.createElement("th");
+        th.textContent=region+"地区售卖情况";
+        th.colSpan=14;
+        tr2.appendChild(th);
+        div.appendChild(tr2);
+
+        //渲染表格标题
+        let tr=document.createElement("tr");
+        let tda=document.createElement("td");
+        tda.textContent="商品";
+        tr.appendChild(tda);
+        let tdb=document.createElement("td");
+        tdb.textContent="产地";
+        tr.appendChild(tdb);
+        let tdc=document.createElement("td");
+        tdc.textContent="一月";
+        tr.appendChild(tdc);
+        let tdd=document.createElement("td");
+        tdd.textContent="二月";
+        tr.appendChild(tdd);
+        let tde=document.createElement("td");
+        tde.textContent="三月";
+        tr.appendChild(tde);let
+        tdf=document.createElement("td");
+        tdf.textContent="四月";
+        tr.appendChild(tdf);
+        let tdg=document.createElement("td");
+        tdg.textContent="五月";
+        tr.appendChild(tdg);
+        let tdh=document.createElement("td");
+        tdh.textContent="六月";
+        tr.appendChild(tdh);
+        let tdi=document.createElement("td");
+        tdi.textContent="七月";
+        tr.appendChild(tdi);
+        let tdj=document.createElement("td");
+        tdj.textContent="八月";
+        tr.appendChild(tdj);
+        let tdk=document.createElement("td");
+        tdk.textContent="九月";
+        tr.appendChild(tdk);
+        let tdl=document.createElement("td");
+        tdl.textContent="十月";
+        tr.appendChild(tdl);
+        let tdm=document.createElement("td");
+        tdm.textContent="十一月";
+        tr.appendChild(tdm);
+        let tdn=document.createElement("td");
+        tdn.textContent="十二月";
+        tr.appendChild(tdn);
+
+        div.appendChild(tr);
+
+
+        for(i=0;i<sourceData.length;i++){
+            if(region==sourceData[i].region&&product==sourceData[i].product){
+                let tr=document.createElement("tr");
+                let td1=document.createElement("td");
+                let td2=document.createElement("td");
+                td1.textContent=sourceData[i].product;
+                td2.textContent=sourceData[i].region;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                for(j=0;j<12;j++){
+                    let td=document.createElement("td");
+                    td.textContent=sourceData[i].sale[j];
+                    tr.appendChild(td);
+                }
+                div.appendChild(tr);
+            }
+        }
+        showTable.appendChild(div);
+        showTable.style.display="block";
+
+    }
+</script>
+</html>
