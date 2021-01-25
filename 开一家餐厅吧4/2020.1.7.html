@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="2020.1.8.css">
+</head>
+<body>
+<div id="restaurantTitle">滴答餐厅</div>
+<div id="cost">总收入:<span>0</span></div>
+<div class="openAndClose">
+    <button id="begin">开门营业</button>
+    <button id="close">关门结算</button>
+</div>
+<div class="addAndFire">
+    <button class="addWaiter">增加服务员</button>
+    <button class="fireWaiter">减少服务员</button>
+    <button class="addCooker">增加厨师</button>
+    <button class="fireCooker">减少厨师</button>
+</div>
+
+<div id="center">
+    <div class="cooker people p1">
+        <img src="cooker.png" width=auto height="180px" >
+        <div class="content">
+            <div class="cookerDefind">
+                <p>厨师</p>
+                <p id="state">角色未被建立</p>
+            </div>
+            <div class="beginCook">
+                <div class="cookerPeople">
+                </div>
+                <div id="surplusCook">
+                    <p>没有要做的菜品</p>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+     </div>
+
+    <div class="waiter people">
+        <img src="waiter.png" width=auto height="180px">
+        <div class="content">
+            <div class="waiterDefind">
+                <p>服务员</p>
+                <p >角色未被建立</p>
+            </div>
+            <div class="waiterPeople">
+            </div>
+        </div>
+    </div>
+    <div class="customer people">
+        <img src="customer.png" width=auto height="180px">
+        <div class="content c3">
+            <p>一号餐桌</p>
+            <p id="eating1">无人正在吃饭</p>
+            <p class="eatTeam">后面还有<span>0</span>人排队</p>
+        </div>
+    </div>
+    <div class="customer people">
+        <img src="customer.png" width=auto height="180px">
+        <div class="content c3">
+            <p>二号餐桌</p>
+            <p id="eating2">无人正在吃饭</p>
+            <p class="eatTeam">后面还有<span>0</span>人排队</p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="2020.1.7(死去活来面向对象）.js"></script>
+</html>
