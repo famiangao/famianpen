@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.ground{
+    background: #ffce9d;
+
+    width: 1000px;
+    height: 500px;
+}
+.picture{
+    position: relative;
+
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    display: block;
+}
+.player{
+    position: absolute;
+}
+.player svg{
+    position: absolute;
+}
