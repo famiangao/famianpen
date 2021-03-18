@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #show_table{
+            display: none;
+            padding: 10px;
+            width: 95%;
+
+            margin:0 auto;
+        }
+        div{
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
+        tr{
+            width:100%;
+        }
+        td,th{
+            position: relative;
+
+            white-space: nowrap;
+
+        }
+        #chooseRegion{
+            float: left;
+
+            margin-right: 40px;
+
+        }
+        #chooseProduct{
+            padding-left:20px ;
+
+        }
+        #tableButton{
+            position: relative;
+            top: 130px;
+            right: 44px;
+
+            float: right;
+            display: none;
+        }
+
+        #save{
+
+        }
+        input{
+            float: left;
+            margin: 10px;
+        }
+        p{
+            overflow: auto;
+            margin: 0px;
+            line-height: 35px;
+        }
+        table{
+            width: 100%;
+
+            margin:0 auto;
+
+            text-align: center;
+        }
+        #bar_chart{
+            clear: both;
+            float: left;
+            width: 50%;
+
+            padding-left: 30px;
+
+        }
+        td{
+           width: 200px;
+            height: 40px;
+
+            text-align: center;
+        }
+         td input{
+            padding: 0;
+            margin: 0;
+
+            width: 55px;
+             height: 35px;
+
+             text-align: center;
+             font-size: 15px;
+        }
+         td button{
+             padding: 0;
+             margin-left: 7px;
+             height:20px;
+             width: 30px;
+             float: left;
+
+             font-size: 13px;
+
+         }
+
+        .pencilIcon{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width:13px;
+            height:13px;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="tableButton">
+    <button id="clearLocalStoragr">复原</button>
+    <button id="save">保存</button>
+</div>
+<div id="chooseRegion">
+    <input type="checkbox" name=region value="华东"> <p>华东</p>
+    <input type="checkbox" name=region value="华南"> <p>华南</p>
+    <input type="checkbox" name=region value="华北"> <p>华北</p>
+    <input type="checkbox" name=region value="all"><p>全选</p>
+</div>
+<div id="chooseProduct">
+    <input type="checkbox" name=product value="手机"><p>手机</p>
+    <input type="checkbox" name=product value="智能音箱"> <p>智能音箱</p>
+    <input type="checkbox" name=product value="笔记本"> <p>笔记本</p>
+    <input type="checkbox" name=product value="all"><p>全选</p>
+</div>
+<div id="show_table"></div>
+<div id="bar_chart">
+    <svg xmlns="http://www.w3.org/2000/svg" width="350" height="350" >
+        <!--<line x1="33" y1="5" x2="33" y2="405" stroke="black" stroke-width="2"></line>
+        <line x1="33" y1="405" x2="555" y2="405"  stroke="black" stroke-width="2"></line>-->
+    </svg>
+</div>
+    <canvas id="canvasPart" width="350" height="350"></canvas>
+<!--    <canvas id="canvasTotal" width="500" height="500"></canvas>-->
+</body>
+<script src="app.js"></script>
+<script src="../函数/addLoadEvent.js"></script>
+<script src="table.js"></script>
+<script src="checkbox.js"></script>
+<script src="J_canvas.js"></script>
+<script src="tableButton.js"></script>
+</html>
